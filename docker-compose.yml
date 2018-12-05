@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    command: mongod --smallfiles --logpath=/dev/null
+    ports:
+      - 27017:27017
+  possible-ui:
+    build: ./client
+    command: sh ${HOME}/repos/possible/client/build.sh
+    volumes:
+      - ./client/build.sh:/possible/client/build.sh
+    ports:
+      - "5000:5000"
+  possible-back:
+    build: ./server
+    command: sh ${HOME}/repos/possible/server/start-server.sh
+    volumes:
+      - ./server/start-server.sh:/possible/server/start-server.sh
+    ports:
+      - "9000:9000"
+    environment:
+      - MONGO_URI=mongodb://mongodb/possibleDb
+    links:
+      - mongodb  
