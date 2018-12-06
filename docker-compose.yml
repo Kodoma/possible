@@ -1,29 +1,43 @@
-version: "2"
+version: "3"
 
 services:
+
   mongodb:
-    image: mongo
+    image: mongo:latest
     environment:
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
-    command: mongod --smallfiles --logpath=/dev/null
-    ports:
-      - 27017:27017
-  possible-ui:
-    build: ./client
-    command: sh ${HOME}/repos/possible/client/build.sh
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - db-data:/data/db
+      - mongo-config:/data/configdb
     volumes:
-      - ./client/build.sh:/possible/client/build.sh
+      - ./data/db:/data/db
+    ports:
+      - "27018:27018"
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+  mongo_seed:
+    build: 
+      context: ./mongo-seed
+      dockerfile: ./Dockerfile
+    links:
+        - mongodb
+
+  possible-ui:
+    build: 
+      context: ./client
+      dockerfile: ./Dockerfile
+    depends_on:
+      - possible-back
     ports:
       - "5000:5000"
+
   possible-back:
-    build: ./server
-    command: sh ${HOME}/repos/possible/server/start-server.sh
-    volumes:
-      - ./server/start-server.sh:/possible/server/start-server.sh
+    image: 'node:8-alpine'
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
     ports:
-      - "9000:9000"
-    environment:
-      - MONGO_URI=mongodb://mongodb/possibleDb
+      - "3000:3000"
     links:
-      - mongodb  
+      - mongodb
+    

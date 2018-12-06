@@ -1,11 +1,13 @@
 #!/bin/bash
 
-yarn dev
-#yarn run build:int
+echo '###yarn dev'
+cd $(dirname $(realpath $0))
+
+yarn run build
 
 rsync -av $(pwd)/build $(pwd)/server/
 rm -rf $(pwd)/build
 
-#cd $(pwd)/server
+cd $(pwd)/server
 
 yarn start
