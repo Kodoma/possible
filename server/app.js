@@ -11,6 +11,15 @@ const Server = Restify.createServer({
     name: Config.swagger.info.title
 })
 
+
+// Middlewares
+Server.use(Restify.bodyParser({ mapParams: true }))
+Server.use(Restify.queryParser())
+
+// CORS
+Restify.CORS.ALLOW_HEADERS.push('authorization')
+Server.use(Restify.CORS())
+
 // Default path
 Server.get({ path: Config.basePath, version: Config.version }, (req, res, next) => {
     res.send(Config.defaultMessage)
@@ -18,6 +27,13 @@ Server.get({ path: Config.basePath, version: Config.version }, (req, res, next) 
 })
 // By Query endpoint
 Server.get({
-    path: `${Config.basePath}/title?q:`,
+    path: `${Config.basePath}/books`,
     version: Config.version
   }, BooksHandler.titleByQuery)
+
+// Swagger
+Swagger.init(Server, Config.swagger)
+
+Server.listen(Config.port, () => {
+  console.log(`${Config.swagger.info.title} server is ready on port %s`, Config.port)
+})

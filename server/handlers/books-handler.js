@@ -1,5 +1,6 @@
 'use strict'
 
+const ItemsService = require('../services/items-service')
 /**
  * @swagger
  * resourcePath: /api/books
@@ -24,12 +25,7 @@ module.exports = {
      */
     titleByQuery: (req, res, next) => {
       ItemsService.getSearchItemsByQuery(req.params.q).then(response => {
-        //res.json(200, response)
-        ProcessRequestStrategy.version('v1')
-        ProcessRequestStrategy.channel('test')
-        ProcessRequestStrategy.strategy('items-by-query-strategy')
-        res.json(ProcessRequestStrategy.process(response))
-  
+        res.json(200, response)
       }).catch(err => {
         res.json(err.statusCode, err)
       })
