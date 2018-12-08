@@ -25,5 +25,10 @@ module.exports = {
   log: {
     directory: './logs',
     filename: 'possible-backend.log'
+  },
+  db: {
+    url: 'mongodb://localhost:27018/possibleDb',
+    dbName: 'possibleDb',
+    dbCollection: 'books'
   }
 }
