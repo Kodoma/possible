@@ -13,7 +13,6 @@ RUN yarn install
 COPY ./handlers handlers
 COPY ./logs logs
 COPY ./services services
-COPY ./strategies strategies
 COPY ./swagger swagger
 
 COPY ./app.js app.js

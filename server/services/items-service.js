@@ -1,26 +1,22 @@
 'use strict'
-const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
-mongoose.models = {};
-mongoose.modelSchemas = {};
-
-mongoose.connect('mongodb://localhost:27017/');
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27018/possibleDb";
 
 module.exports = {
-    // Search service
-
-    getSearchItemsByQuery: query => {
-        const books = mongoose.model('books', { name: String })
-    
-        books.find({ title: query }, function(err, docs) {
-            if (err || !docs) {
-                return err;
-            }
-            else {
-                return docs;
-            }
-        });
-    
+    getSearchItemsByQuery: q => {
+        return new Promise(function(resolve, reject) {
+            MongoClient.connect(url, function(err, db) {
+              if (err) throw err;
+              var dbo = db.db("possibleDb");
+              var query = {"title" : {$regex : ".*"+ q +"*"} }
+              return dbo.collection("books").find(query)
+                .toArray(function(err, result) {
+                  if (err) throw reject(err);
+                  return resolve(result);
+              });
+              db.close();
+            });
+        })
     }
-}        
+}
