@@ -12,13 +12,13 @@ module.exports = {
      * path: /api/books
      * operations:
      *   -  httpMethod: GET
-     *      summary: Get the Items List by query parameter
-     *      notes: Returns an object with Items List
+     *      summary: Get the books List by query parameter
+     *      notes: Returns an object with match with title
      *      consumes:
      *        - application/json
      *      parameters:
      *        - name: q
-     *          description: Items name
+     *          description: Books Title
      *          paramType: query
      *          required: true
      *          type: string
