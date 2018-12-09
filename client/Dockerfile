@@ -26,4 +26,4 @@ COPY ./src src
 COPY ./build.sh build.sh
 RUN ["chmod", "+x", "build.sh"]
 
-EXPOSE 8080
+EXPOSE 5000

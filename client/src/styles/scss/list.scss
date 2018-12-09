@@ -1,0 +1,70 @@
+@import "variables.scss";
+
+
+.section{
+    background-color: #f3f3f3;
+    .list-view {
+        padding: 0% 10% 0% 10%;
+        position: relative;
+    }
+    .list-view-item {
+        border-bottom: 1px solid #cdcdcd;
+        min-height: 80px;
+        height: auto!important;
+        height: 80px;
+        padding: 15px 385px 5px 120px;
+        position: relative;
+        background-color: #FFF;
+    }
+    .list-view-item-title {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: normal;
+        margin: 0 0 5px;
+        position: relative;
+        z-index: 1;
+    }
+    .list-view-item-title{
+        .a{
+            vertical-align: middle;
+        }
+    }
+    .images-viewer {
+        display: block;
+        height: 90px;
+        width: 90px;
+        left: 10px;
+        overflow: hidden;
+        position: absolute;
+        top: 5px;
+    }
+    .price-info{
+        position: absolute;
+        right: 170px;
+        top: 15px;
+        text-align: right;
+    }
+    .price-info-cost .price-info-cost .ch-price {
+        margin-right: 0;
+    }
+    .ch-price {
+        color: #900;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .price-info-installments {
+        display: block;
+    }
+    .mla-installments-interest {
+        color: #900;
+    }
+    .extra-info {
+        color: #555;
+        font-size: 11px;
+        line-height: 15px;
+        top: 15px;
+        right: 0;
+        width: 120px;
+    }
+
+} 

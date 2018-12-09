@@ -1,0 +1,11 @@
+{
+    "name": "Possible",
+    "short_name": "Possible",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A simply readable Possible News app.",
+    "icons": [{
+    }],
+    "related_applications": [{}]
+}

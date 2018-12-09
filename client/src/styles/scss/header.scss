@@ -1,0 +1,120 @@
+@import "variables.scss";
+
+header {
+
+    background-color: #FFF059;
+    //background-color: red;
+    border-bottom: 1px solid #D9D9D9;
+    height: 54px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+	@media only screen and (max-width: 960px) {
+    	width: auto;
+	}
+	.ml-header-inner {
+	    margin: 0 auto;
+	    max-width: 1200px;
+	    min-width: 950px;
+	    padding: 7px 10px;
+	    position: relative;
+	    z-index: 1000;
+	}
+	.ml-logo {
+		background-repeat: no-repeat;
+		margin: 0;
+		position: absolute;
+		top: 7px;
+		left: 10px;
+		text-indent: -9000px;
+		width: 164px;
+		height: 43px;
+	}
+	.ml-logo.es{
+		background-image : url(http://static.mlstatic.com/org-img/commons/logo-mercadolibre-new.png);
+	}
+	.ml-search {
+	    margin: 7px 0 0 210px;
+	    position: relative;
+	    float: left;
+	    background: #FFF;
+	    border-radius: 4px;
+	    width: 44%;
+	    height: 40px;
+	    top: 0!important;
+	    @media only screen and (max-width: 1200px) {
+	    	width: 43%;
+	    }
+	}
+	.nav-search input[type=text] {
+	    border: 1px solid #CCC;
+	    border-radius: 3px;
+	    font-size: 16px;
+	    padding: 5px 10% 5px 2%;
+	    margin: 0;
+	    width: 83%;
+	    height: 28px;
+	    -webkit-box-shadow: none;
+	    -moz-box-shadow: none;
+	    box-shadow: none;
+	    font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+	    @media only screen and (max-width: 960px) {
+		    padding-right: 13%;
+		    width: 85%;
+		}
+
+		@media only screen and (max-width: 1200px) {
+		    padding-right: 11%;
+		    width: 75%;
+		}
+	}
+	.ml-search input[type=text]:focus {
+    	box-shadow: 0 0 5px rgba(117,127,16,.2);
+    }
+	.nav-search button {
+	    background: #fff;
+	    background: -moz-linear-gradient(top,#fff 0,#f1f1f1 100%);
+	    background: -ms-linear-gradient(top,#fff 0,#f1f1f1 100%);
+	    background: -o-linear-gradient(top,#fff 0,#f1f1f1 100%);
+	    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#f1f1f1));
+	    background: -webkit-linear-gradient(top,#fff 0,#f1f1f1 100%);
+	    background: linear-gradient(to bottom,#fff 0,#f1f1f1 100%);
+	    -moz-border-radius: 0 3px 3px 0;
+	    -webkit-border-radius: 0 3px 3px 0;
+	    border-radius: 0 3px 3px 0;
+	    border: 1px solid #CDCCCB;
+	    color: #666;
+	    cursor: pointer;
+	    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#f1f1f1',GradientType=0);
+	    height: 40px;
+	    position: absolute;
+	    top: 0;
+	    width: 46px;
+	}
+	.nav-search .nav-icon-search {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    background-position: 13px 10px;
+	    width: 44px;
+	    height: 40px;
+	    background-image: url(http://static.mlstatic.com/org-img/commons/assets/sprite.png?v1);
+	    background-repeat: no-repeat;
+	    display: inline-block;
+	    vertical-align: middle;
+	    text-indent: -9999px;
+	}
+	.ch-popover {
+		z-index: 1005 !important;
+	}
+	.ac-box-lite,
+	.ac-box {
+		border:1px solid #DEDEDE;
+	}.ac-box-lite {
+		background-color:#FFF;
+	}
+	.ac-popover{ 
+		box-shadow:2px 2px 2px rgba(100,100,100,0.2);
+	}
+}

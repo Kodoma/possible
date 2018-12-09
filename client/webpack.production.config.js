@@ -24,13 +24,16 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
-      },
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				loader: ["babel-loader", "eslint-loader"]
+			},
       {
         test: /\.scss$/,
-        loaders: [ 'style', 'css', 'sass' ]
+        loaders: ['style', 'css', 'sass'],
+        include: [
+          path.resolve(__dirname, 'src/styles')
+        ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/i,
@@ -54,55 +57,43 @@ module.exports = {
       }
     ],
     sassLoader: {
-      includePaths: [ PATHS.sass ]
+      includePaths: [PATHS.sass]
     },
-    imageWebpackLoader: {
-      mozjpeg: {
-        quality: 65
-      },
-      pngquant: {
-        quality: '65-90',
-        speed: 4
-      },
-      svgo: {
-        plugins: [
-          {
-            removeViewBox: false
+    output: {
+      path: PATHS.build,
+      filename: 'client.min.js'
+    },
+    eslint: {
+      configFile: './.eslintrc'
+    },
+    externals: {
+      "tiny": "tiny",
+      "chico": "ch"
+    },
+    plugins: [
+      new webpack.LoaderOptionsPlugin({
+        options: {}
+      }),
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.UglifyJsPlugin(
+        {
+          mangle: false,
+          sourcemap: false,
+          compress: {
+            warnings: false
           },
-          {
-            removeEmptyAttrs: false
+          output: {
+            comments: false
           }
-        ]
-      }
-    }
-  },
-  output: {
-    path: PATHS.build,
-    filename: 'client.min.js'
-  },
-  eslint: {
-    configFile: './.eslintrc'
-  },
-  plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin(
-      {
-        mangle: false,
-        sourcemap: false,
-        compress: {
-          warnings: false
-        },
-        output: {
-          comments: false
         }
-      }
-    ),
-    new CopyWebpackPlugin([
-      {
-        from: '../src/index.html',
-        to: 'index.html'
-      }
-    ])
-  ]
+      ),
+      new CopyWebpackPlugin([
+        {
+          from: '../src/index.html',
+          to: 'index.html'
+        }
+      ])
+    ]
+  }
 }

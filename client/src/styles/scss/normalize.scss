@@ -1,0 +1,26 @@
+@import "variables.scss";
+
+body {
+    font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+    padding: 70px 10px 0;
+    //background-color: #f4f4f4;
+    background-color: #FFF;
+    color: #333;
+    margin: 0 auto;
+}
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+a, a:active, a:link {
+    color: #03b;
+    text-decoration: none;
+}

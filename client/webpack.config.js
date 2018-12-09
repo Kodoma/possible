@@ -1,28 +1,39 @@
 const webpack = require('webpack')
 const path = require('path')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+var ImageminPlugin = require('imagemin-webpack-plugin').default
+
+const DIST_DIR = path.resolve(__dirname,"dist");
+const SRC_DIR = path.resolve(__dirname,"src");
+
+
+const DEV_MODE = process.env.WEBPACK_SERVE;
 
 module.exports = {
   context: path.join(__dirname, 'src'),
   devtool: 'inline-sourcemap',
   entry: './js/client.js',
-  module: {
-    preLoaders: [
+  stats: {
+    warnings: false,
+    colors: true
+  },
+  module:
+  {
+		rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      }
-    ],
-    loaders: [
-      {
-        test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       },
-      /* {
-        test: /\.json?$/,
-        loader: 'json-loader'
-      }, */
+      {
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				loader: ["babel-loader", "eslint-loader"]
+			},
       {
         test: /manifest.json$/,
         loaders: [
@@ -31,41 +42,22 @@ module.exports = {
         ]
       },
       {
-        test: /\.scss$/,
-        loaders: [ 'style', 'css', 'sass' ]
-      },
-      {
         test: /\.(png|woff|woff2|eot|ttf)$/,
         loader: 'file-loader?name=../build/styles/fonts/[name].[ext]'
       },
       {
-        test: /.*\.(gif|png|jpe?g|svg)$/i,
-        loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack'
+        test: /\.(png|jpg|gif|woff|woff2|ttf|eot|svg)$/,
+        use: [
+            {
+                loader: "file-loader",
+                options: {
+                    name: `[name].[ext]`
+                }
+            }
         ]
       }
     ]
-  },
-  imageWebpackLoader: {
-    mozjpeg: {
-      quality: 65
-    },
-    pngquant:{
-      quality: "65-90",
-      speed: 4
-    },
-    svgo:{
-      plugins: [
-        {
-          removeViewBox: false
-        },
-        {
-          removeEmptyAttrs: false
-        }
-      ]
-    }
-  },
+	},
   devServer: {
     inline: true,
     contentBase: './src',
@@ -81,14 +73,27 @@ module.exports = {
     "tiny": "tiny",
     "chico": "ch"
   },
-  eslint: {
-    configFile: './.eslintrc'
-  },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('integration')
+    prodPlugin(new CleanWebpackPlugin([DIST_DIR])),
+    new webpack.LoaderOptionsPlugin({
+      options: {}
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(SRC_DIR, 'index.html'),
+      favicon: path.resolve(SRC_DIR, 'assets/favicon.ico')
+    }),
+    new ImageminPlugin({
+      disable: process.env.NODE_ENV !== 'production', // Disable during development
+      pngquant: {
+        quality: '95-100'
       }
+    }),
+    new ExtractTextPlugin({
+      filename: 'possible.css'
     })
   ]
+}
+
+function prodPlugin(plugin) {
+  return !DEV_MODE ? plugin : () => {};
 }
