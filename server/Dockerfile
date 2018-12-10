@@ -11,7 +11,6 @@ COPY ./package.json package.json
 RUN yarn install
 
 COPY ./handlers handlers
-COPY ./logs logs
 COPY ./services services
 COPY ./swagger swagger
 
