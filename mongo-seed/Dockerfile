@@ -1,9 +1,6 @@
-FROM mongo:3.2
+FROM mongo
 
 RUN echo 'mongoimport Books Collections'
-
-RUN mkdir -p /usr/code/possible/mongo-seed
-WORKDIR /usr/code/possible/mongo-seed
 
 COPY ./data/books.json books.json
 
