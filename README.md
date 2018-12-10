@@ -3,7 +3,7 @@ ReactJS (Frontend) y NodeJs (Backend)
 
 ## Selected technologies
 Frontend
-- [react.js](https://facebook.github.io/react/)
+- [React.js](https://facebook.github.io/react/)
 - [webpack](https://webpack.github.io/)
 
 Backend
