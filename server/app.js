@@ -18,10 +18,17 @@ Server.use(Restify.queryParser())
 
 // CORS
 Restify.CORS.ALLOW_HEADERS.push('authorization')
+Restify.CORS.ALLOW_HEADERS.push('accept');
+Restify.CORS.ALLOW_HEADERS.push('sid');
+Restify.CORS.ALLOW_HEADERS.push('lang');
+Restify.CORS.ALLOW_HEADERS.push('origin');
+Restify.CORS.ALLOW_HEADERS.push('withcredentials');
+Restify.CORS.ALLOW_HEADERS.push('x-requested-with');
 Server.use(Restify.CORS())
 
 // Default path
 Server.get({ path: Config.basePath, version: Config.version }, (req, res, next) => {
+    // TODO Add origin validation
     res.send(Config.defaultMessage)
     next()
 })

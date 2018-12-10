@@ -2,10 +2,10 @@
 
 header {
 
-    background-color: #FFF059;
+    background-color: #000;
     //background-color: red;
     border-bottom: 1px solid #D9D9D9;
-    height: 54px;
+    height: 85px;
     position: absolute;
     top: 0;
     left: 0;
@@ -22,27 +22,35 @@ header {
 	    z-index: 1000;
 	}
 	.ml-logo {
-		background-repeat: no-repeat;
-		margin: 0;
-		position: absolute;
-		top: 7px;
-		left: 10px;
-		text-indent: -9000px;
-		width: 164px;
-		height: 43px;
+		text-transform: none;
+		font-weight: normal;
+		height: 56px;
+		padding-left: 15%;
+		text-align: center;
+		position: relative;
 	}
-	.ml-logo.es{
-		background-image : url(http://static.mlstatic.com/org-img/commons/logo-mercadolibre-new.png);
+	.ml-log h1 {
+		font-family: "Helvetica Neue", Helvetica, Arial, _sans-serif;
+		color: #FFF;
 	}
+	.ml-log h1 a,
+	.ml-log h1 a:hover
+	.ml-log h1 a:link
+	.ml-log h1 a:active
+	{
+		color: #FFF;	
+		text-decoration: none;
+	}
+
 	.ml-search {
-	    margin: 7px 0 0 210px;
+		margin: 0 0 0 210px;
 	    position: relative;
 	    float: left;
 	    background: #FFF;
 	    border-radius: 4px;
 	    width: 44%;
 	    height: 40px;
-	    top: 0!important;
+	    top: -72px;
 	    @media only screen and (max-width: 1200px) {
 	    	width: 43%;
 	    }
@@ -80,16 +88,17 @@ header {
 	    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#f1f1f1));
 	    background: -webkit-linear-gradient(top,#fff 0,#f1f1f1 100%);
 	    background: linear-gradient(to bottom,#fff 0,#f1f1f1 100%);
-	    -moz-border-radius: 0 3px 3px 0;
-	    -webkit-border-radius: 0 3px 3px 0;
-	    border-radius: 0 3px 3px 0;
+	    -moz-border-radius: 0 4px 4px 0;
+	    -webkit-border-radius: 0 4px 4px 0;
+	    border-radius: 0 4px 4px 0;
 	    border: 1px solid #CDCCCB;
 	    color: #666;
 	    cursor: pointer;
 	    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#f1f1f1',GradientType=0);
 	    height: 40px;
 	    position: absolute;
-	    top: 0;
+		top: 0;
+		right: 0;
 	    width: 46px;
 	}
 	.nav-search .nav-icon-search {

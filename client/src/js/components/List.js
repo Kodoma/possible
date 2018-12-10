@@ -7,35 +7,34 @@ import Header from './common/Header'
 
 export default class List extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      products: [],
-      categories: []
+      books: []
     }
   }
 
   componentDidMount() {
-    let url = `${Config.apibackend.url}/books/?q=${this.props.location.query.q}`
-
+    let url = `${Config.apibackend.url}/books?q=`+ this.props.location.query.title
+    console.log('Query',this.props.location.query)
     axios.get(url)
     .then( response => {
-      this.setState( { title: response.data.title, imageURL: response.data.imageURL } )
+      console.log(response)
+      this.setState({ books: response.data } )
     })
     .catch( err => {
+      console.log(err.response)
       throw new Error(err)
-      //console.error(err)
     })
   }
 
   render() {
-    let results = this.state.products.map( current => {
-      const permalink = 'items/' + current.id
-      const hasDecimals = (current.price.decimals > 0)
+    let results = this.state.books.map( current => {
       return (
+        
           <li className="results-item list-view-item rowItem">
             <h2 className="list-view-item-title">
-              <a href="/"  className=" "> { current.title } </a>
+              <a href="/"  className="list-view-item-title"> { current.title } </a>
             </h2>
             <div className="images-viewer" >
               <a href="/" class="item-link">
@@ -45,7 +44,7 @@ export default class List extends React.Component {
           </li>
       )
     })
-
+    
     return(
       <div>
         <Header />

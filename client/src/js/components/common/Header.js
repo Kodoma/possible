@@ -9,7 +9,7 @@ export default class Header extends React.Component {
             <div>
                 <a href="/" >
                      <h1 className="possible-logo es">
-                         Possible Books Search Test
+                         Possible
                      </h1> 
                 </a>
                 <SearchForm />

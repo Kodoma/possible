@@ -1,12 +1,12 @@
 @import "variables.scss";
 
 body {
-    font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
-    padding: 70px 10px 0;
-    //background-color: #f4f4f4;
+    font-family: "Helvetica Neue", Helvetica, Arial, _sans-serif;
+    padding: 70px 0 0 0;
     background-color: #FFF;
     color: #333;
     margin: 0 auto;
+    text-rendering: optimizeLegibility;
 }
 input {
     -webkit-appearance: textfield;
@@ -20,7 +20,16 @@ input {
     border-color: initial;
     border-image: initial;
 }
+font {
+    font-weight: normal;
+    text-transform: none;
+    speak: none;
+}
+h1  {
+    color: #FFF;
+    text-decoration: none;
+}
 a, a:active, a:link {
-    color: #03b;
+    color: #000;
     text-decoration: none;
 }

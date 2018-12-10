@@ -8,10 +8,7 @@ var ImageminPlugin = require('imagemin-webpack-plugin').default
 const DIST_DIR = path.resolve(__dirname,"dist");
 const SRC_DIR = path.resolve(__dirname,"src");
 
-
-const DEV_MODE = process.env.WEBPACK_SERVE;
-
-module.exports = {
+module.exports =  {
   context: path.join(__dirname, 'src'),
   devtool: 'inline-sourcemap',
   entry: './js/client.js',
@@ -74,7 +71,7 @@ module.exports = {
     "chico": "ch"
   },
   plugins: [
-    prodPlugin(new CleanWebpackPlugin([DIST_DIR])),
+    new CleanWebpackPlugin([DIST_DIR]),
     new webpack.LoaderOptionsPlugin({
       options: {}
     }),
@@ -92,8 +89,4 @@ module.exports = {
       filename: 'possible.css'
     })
   ]
-}
-
-function prodPlugin(plugin) {
-  return !DEV_MODE ? plugin : () => {};
 }
