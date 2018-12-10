@@ -12,9 +12,7 @@ WORKDIR /usr/code/possible/client
 RUN ls -al
 
 COPY ./package.json package.json
-RUN yarn install
-
-
+RUN npm install
 
 COPY ./.babelrc .babelrc
 COPY ./.eslintrc .eslintrc

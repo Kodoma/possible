@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "gulp": "^3.9.1"
+    "terser-webpack-plugin": "^1.1.0"
   }
 }

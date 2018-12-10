@@ -3,11 +3,14 @@
 echo '###yarn dev'
 cd $(dirname $(realpath $0))
 
-yarn run build
+npm rebuild node-sass
+npm run dev
 
-rsync -av $(pwd)/build $(pwd)/server/
-rm -rf $(pwd)/build
+#yarn run build
 
-cd $(pwd)/server
+#rsync -av $(pwd)/build $(pwd)/server/
+#rm -rf $(pwd)/build
 
-yarn start
+#cd $(pwd)/server
+
+#yarn start
