@@ -20,9 +20,6 @@ COPY ./webpack.production.config.js webpack.production.config.js
 COPY ./webpack.config.js webpack.config.js
 COPY ./src src
 
-
-COPY ./build.sh build.sh
-
 CMD npm run dev
 
 EXPOSE 5000

@@ -8,7 +8,7 @@ RUN mkdir -p /usr/code/possible/server
 WORKDIR /usr/code/possible/server
 
 COPY ./package.json package.json
-RUN yarn install
+RUN npm install
 
 COPY ./handlers handlers
 COPY ./services services
@@ -17,6 +17,6 @@ COPY ./swagger swagger
 COPY ./app.js app.js
 COPY ./config.js config.js
 
-CMD yarn start
+CMD npm run start
 
 EXPOSE 9000

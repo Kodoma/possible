@@ -32,7 +32,7 @@ class SearchForm extends React.Component {
               placeholder="Enter Book Title"
               onChange={this.handleChange}
               />
-          <button type="submit">Submit</button>
+          <button type="submit">&#x1F50D;</button>
       </form>
     )
   }
