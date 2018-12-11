@@ -22,6 +22,7 @@ COPY ./src src
 
 
 COPY ./build.sh build.sh
-RUN ["chmod", "+x", "build.sh"]
+
+CMD npm run dev
 
 EXPOSE 5000
